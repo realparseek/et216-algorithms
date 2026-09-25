@@ -1,0 +1,6 @@
+.vs
+*.user
+x86
+x64
+[Dd]ebug
+[Rr]elease
