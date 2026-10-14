@@ -3,7 +3,6 @@
 #include <random>
 #include <vector>
 
-// Пузырьковая сортировка
 void bubbleSort(std::vector<int>& a)
 {
     int n = static_cast<int>(a.size());
@@ -25,7 +24,6 @@ void bubbleSort(std::vector<int>& a)
     }
 }
 
-// Сортировка вставками
 void insertionSort(std::vector<int>& a)
 {
     for (unsigned int i = 1; i < a.size(); ++i)
@@ -36,14 +34,13 @@ void insertionSort(std::vector<int>& a)
         while (j > 0 && a[j - 1] > key)
         {
             a[j] = a[j-1];
-            --j;
+            j--;
         }
 
         a[j] = key;
     }
 }
 
-// Быстрая сортировка
 void quickSortRange(std::vector<int>& a, int left, int right)
 {
     int i = left;
@@ -73,22 +70,16 @@ void quickSortRange(std::vector<int>& a, int left, int right)
 
 void quickSort(std::vector<int>& a)
 {
-    if (!a.empty())
-    {
-        quickSortRange(a, 0, static_cast<int>(a.size()) - 1);
-    }
+    if (!a.empty()) quickSortRange(a, 0, static_cast<int>(a.size()) - 1);
 }
 
 template <typename SortFunction>
-double measureTime(
-    const std::vector<int>& source,
-    SortFunction sortFunction,
-    int repeats)
+double measureTime(const std::vector<int>& source, SortFunction sortFunction, int repeats)
 {
     double totalTime = 0.0;
     long long guard = 0;
 
-    for (int r = 0; r < repeats; ++r)
+    for (int r = 0; r < repeats; r++)
     {
         std::vector<int> a = source;
 
@@ -104,7 +95,6 @@ double measureTime(
     return totalTime / repeats;
 }
 
-// Главная функция
 int main()
 {
     const std::vector<int> sizes =
@@ -136,14 +126,9 @@ int main()
         for (int& x : data)
             x = dist(rng);
 
-        double bubbleTime =
-            measureTime(data, bubbleSort, repeats);
-
-        double insertionTime =
-            measureTime(data, insertionSort, repeats);
-
-        double quickTime =
-            measureTime(data, quickSort, repeats);
+        double bubbleTime = measureTime(data, bubbleSort, repeats);
+        double insertionTime = measureTime(data, insertionSort, repeats);
+        double quickTime = measureTime(data, quickSort, repeats);
 
         std::cout << std::left
             << std::setw(8) << n
