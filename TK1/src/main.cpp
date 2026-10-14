@@ -26,7 +26,7 @@ void bubbleSort(std::vector<int>& a)
 
 void insertionSort(std::vector<int>& a)
 {
-    for (unsigned int i = 1; i < a.size(); ++i)
+    for (unsigned int i = 1; i < a.size(); i++)
     {
         int key = a[i];
         unsigned int j = i;
